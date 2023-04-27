@@ -40,9 +40,12 @@ const requestSchema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ["pending", "approved", "finished"],
+    enum: ["pending","received", "approved", "finished" , "deliverd"],
     default: "pending",
   },
+  total:{
+    type: Number
+  }
 });
 
 module.exports = mongoose.model("Request", requestSchema);

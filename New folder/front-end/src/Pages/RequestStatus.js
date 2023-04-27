@@ -16,14 +16,16 @@ const RequestStatus = () => {
         }
       });
       const [jsonData] = await response.json();
+      // console.log(authToken);
       // console.log(jsonData);
       const filteredData = jsonData.filter(item => item.authToken === authToken);
-      setData(filteredData);
       // console.log(filteredData);
+      setData(filteredData);
+     
     };
     
     fetchData();
-  }, []);
+  },[]);
  
   return (
     <>

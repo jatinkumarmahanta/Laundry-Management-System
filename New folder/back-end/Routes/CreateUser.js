@@ -8,10 +8,11 @@ const bcrypt = require("bcryptjs");
 // const jwtSecrect = "abcdefghijklmnopqrstuvwxyz@#$%&*"
 
 router.post("/creatuser", [
-    body('name', 'min 5 character').isAlpha().isLength({ min: 5 }),
+    body('name', 'min 5 character').isAlpha().isLength({ min: 5 }).matches(/^[A-Z][a-z]*$/),
     body('email', 'enter a valid mail').isEmail(),
-    body('number'),
-    body('password', 'inncorrect password').isLength({ min: 5 })]
+    body('number').isLength({max:10 }),
+    body('password', 'inncorrect password').isLength({ min: 5 }).matches(/^(?=.*[A-Z a-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+]
     , async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

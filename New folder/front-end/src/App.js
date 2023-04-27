@@ -10,6 +10,7 @@ import Dashboard from './Components/Dashboard';
 import AdminHome from './Admin/AdminHome';
 import AdminDashboard from './Admin/AdminDashboard';
 import AprovedRequest from './Admin/AprovedRequest';
+import Payment from './Pages/Payment';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/laundry-requests" element={<Request/>}/>
       <Route path="/request-status" element={<RequestStatus/>}/>
+      <Route path="/payment" element={<Payment/>}/>
       <Route path="/admin" element={<AdminHome/>}/>
       <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
       <Route path="/admin/aproveRequests" element={<AprovedRequest/>}/>

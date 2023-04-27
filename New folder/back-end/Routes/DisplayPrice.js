@@ -12,7 +12,25 @@ router.post('/price', (req, res) => {
         res.send("server error");
     }
 })
+router.get('/price', (req, res) => {
+    try {
+        res.send([global.price])
+        // console.log(global.price.map(item => item));
+    } catch (error) {
+        console.error(error.message);
+        res.send("server error");
+    }
+})
 
+router.get('/request', (req, res) => {
+    try {
+        res.send([global.request])
+
+    } catch (error) {
+        console.error(error.message);
+        res.send("server error");
+    }
+})
 
 
 
@@ -34,6 +52,30 @@ router.get('/aprovedRequest', (req, res) => {
         res.send("server error");
     }
 })
+
+router.put('/request/:id', async (req, res) => {
+    try {
+      const requestId = req.params.id;
+      const request = await Request.findById(requestId);
+  
+      if (!request) {
+        return res.status(404).json({ error: 'Request not found' });
+      }
+  
+      request.paid = true;
+      request.total = 0;
+  
+      await request.save();
+  
+      res.json(request);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+  
+  
+  
 // const express = require('express');
 // const router = express.Router();
 router.put('/updateRequest/:id', async (req, res) => {

@@ -20,16 +20,17 @@ const NavigationBar = () => {
             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/laundry-requests">Laundry Requests</Nav.Link>
             <Nav.Link as={Link} to="/request-status">Request Status</Nav.Link>
+            <Nav.Link as={Link} to="/payment">Payment</Nav.Link>
           </Nav> : <Nav className="me-auto">
             <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
           </Nav>}
           <Nav>
             {!(localStorage.getItem("authToken")) ?
               <div className='d-flex mx-1'>
-                <Nav.Link as={Link} to="/login">Log In</Nav.Link>
-                <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
-              </div> : <div className='d-flex mx-1'>
-                <Nav.Link as={Link} to="/" onClick={handleLogout}>logout</Nav.Link>
+                <Nav.Link as={Link} to="/login" className='bg-success rounded text-white '>Log In</Nav.Link>
+                <Nav.Link as={Link} to="/signup" className='bg-primary rounded text-white '>Sign Up</Nav.Link>
+              </div> : <div className='d-flex mx-1 '>
+                <Nav.Link as={Link} to="/" onClick={handleLogout} className='bg-danger rounded text-white'>logout</Nav.Link>
               </div>
             }
           </Nav>

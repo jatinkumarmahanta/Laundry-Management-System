@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import NavigationBar from '../Components/NavigationBar';
 
+
 const Request = () => {
   const [date, setdate] = useState('');
   const [top, settop] = useState('');
@@ -13,6 +14,9 @@ const Request = () => {
   const [disc, setdisc] = useState('');
 
   // const authToken = localStorage.getItem("authToken");
+
+  
+
   async function handleSubmit(e) {
     e.preventDefault();
     const authToken = localStorage.getItem("authToken");
@@ -44,7 +48,7 @@ const Request = () => {
   return (
     <>
     <NavigationBar/>
-    <div className="container my-4">
+    <div className="container my-4 ">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="date">
           <Form.Label>Pickup Date</Form.Label>
@@ -77,6 +81,7 @@ const Request = () => {
             <option value="">-- Select Service Type --</option>
             <option value="Wash">Wash</option>
             <option value="Iron">Iron</option>
+            <option value="Dry-Wash">Dry-Wash</option>
           </Form.Control>
         </Form.Group>
 
@@ -90,7 +95,7 @@ const Request = () => {
           <Form.Control as="textarea" rows={3} value={disc} name='disc' onChange={(e) => setdisc(e.target.value)}  />
         </Form.Group>
 
-        <Button variant="primary" type="submit">Submit</Button>
+        <Button variant="primary" type="submit" className='w-100 mt-4 '>Submit</Button>
       </Form>
     </div>
     </>

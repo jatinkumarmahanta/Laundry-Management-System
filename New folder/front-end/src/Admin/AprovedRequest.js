@@ -41,6 +41,27 @@ function RequestApproved() {
       console.error(error.message);
     }
   }
+  const handleApprovedStatus = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/updateRequest/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          status: 'received'
+        })
+      });
+      const jsonData = await response.json();
+      if (jsonData.success) {
+        setData(prevData => prevData.map(request => request._id === id ? { ...request, status: 'received' } : request));
+      } else {
+        console.log(jsonData.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   const handleFinishStatus = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/api/updateRequest/${id}`, {
@@ -55,6 +76,27 @@ function RequestApproved() {
       const jsonData = await response.json();
       if (jsonData.success) {
         setData(prevData => prevData.map(request => request._id === id ? { ...request, status: 'finished' } : request));
+      } else {
+        console.log(jsonData.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  const handleDeliverdStatus = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/updateRequest/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          status: 'deliverd'
+        })
+      });
+      const jsonData = await response.json();
+      if (jsonData.success) {
+        setData(prevData => prevData.map(request => request._id === id ? { ...request, status: 'deliverd' } : request));
       } else {
         console.log(jsonData.message);
       }
@@ -81,7 +123,9 @@ function RequestApproved() {
               <th>Contact Person</th>
               <th>Status</th>
               <th>Aproved</th>
+              <th>Received</th>
               <th>Finish</th>
+              <th>Deliverd</th>
             </tr>
           </thead>
           <tbody>
@@ -102,9 +146,20 @@ function RequestApproved() {
                 </td>
                 <td>
                   {request.status === 'approved' && (
+                    <Button variant="success" onClick={() => handleApprovedStatus(request._id)}>Received</Button>
+                  )}
+                </td>
+                <td>
+                  {request.status === 'received' && (
                     <Button variant="primary" onClick={() => handleFinishStatus(request._id)}>Finish</Button>
                   )}
                 </td>
+                <td>
+                  {request.status === 'finished' && (
+                    <Button variant="primary" onClick={() => handleDeliverdStatus(request._id)}>Deliverd</Button>
+                  )}
+                </td>
+                
               </tr>
             ))}
           </tbody>

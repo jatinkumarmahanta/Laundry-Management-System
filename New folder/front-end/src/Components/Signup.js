@@ -54,7 +54,7 @@ function Signup() {
   return (
     <>
       <NavigationBar />
-      <div className="container my-4">
+      <div className="container my-4 ">
         <div className="row justify-content-center">
           <div className="col-md-6">
             <h2 className="text-center mb-4">Sign Up</h2>

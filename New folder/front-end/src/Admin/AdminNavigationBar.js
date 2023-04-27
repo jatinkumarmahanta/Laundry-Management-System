@@ -8,7 +8,7 @@ const AdminNavigationBar = () => {
     localStorage.removeItem("authToken");
   }
   return (
-    <Navbar className='bg-light' expand="lg">
+    <Navbar className='bg-light' >
       <div className='d-flex me-auto'>
         <Navbar.Brand as={Link} to="/admin">Laundry Management System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,7 +25,7 @@ const AdminNavigationBar = () => {
             <Nav.Link as={Link} to="/login">Log In</Nav.Link>
             <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
           </div> : <div className='d-flex mx-1'>
-            <Nav.Link as={Link} to="/" onClick={handleLogout}>logout</Nav.Link>
+            <Nav.Link as={Link} to="/" onClick={handleLogout} className='bg-danger rounded text-white'>logout</Nav.Link>
           </div>
         }
       </Nav>
